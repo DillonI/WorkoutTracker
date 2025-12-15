@@ -1,15 +1,12 @@
 import React, { useMemo } from 'react';
 import { WorkoutSession } from '../types';
 import {
-  User,
-  Activity,
-  Download,
-  FileText,
+  BarChart2,
+  Share,
+  Calendar,
   Dumbbell,
-  Flame,
-  Timer,
-  Zap,
-  ChevronRight
+  TrendingUp,
+  Timer
 } from 'lucide-react';
 
 interface Props {
@@ -58,50 +55,52 @@ const Dashboard: React.FC<Props> = ({ history, onStartWorkout, onViewHistory }) 
     return Math.min(workoutsThisWeek, 4); // Cap at 4 for UI
   }, [history]);
 
-  // Date String
+  // Date String: SUNDAY, DEC 14
   const dateString = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
-    month: 'long',
+    month: 'short',
     day: 'numeric'
-  });
+  }).toUpperCase();
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0b1120] text-white font-sans">
+    <div className="flex flex-col min-h-screen bg-[#0f172a] text-white font-sans">
 
       {/* --- Header --- */}
       <header className="px-6 pt-12 pb-6 flex justify-between items-start">
         <div>
-          <h2 className="text-zinc-400 text-sm font-medium uppercase tracking-wider mb-1">
+          <h2 className="text-blue-400/80 text-xs font-bold uppercase tracking-wide mb-1">
             {dateString}
           </h2>
-          <h1 className="text-3xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl font-bold tracking-tight text-white">
             Good Morning
           </h1>
         </div>
-        <div className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center">
-          <User size={20} className="text-zinc-400" />
+        <div className="w-10 h-10 rounded-full bg-[#1e293b] border border-blue-500/20 flex items-center justify-center">
+          <span className="text-blue-400 font-bold">A</span>
         </div>
       </header>
 
       <main className="flex-1 px-6 pb-24 overflow-y-auto">
 
         {/* --- Main Stat (Total Volume) --- */}
-        <div className="mb-8 text-center py-8">
-          <div className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-blue-600 tracking-tighter">
-            {formattedVolume}
+        <div className="mb-8 text-center py-4">
+          <div className="text-blue-400/60 font-bold tracking-widest text-[10px] uppercase mb-2">
+            TOTAL VOLUME
           </div>
-          <div className="text-zinc-500 font-medium tracking-widest text-xs uppercase mt-2">
-            Total Volume (lbs)
+          <div className="text-6xl font-extrabold text-white tracking-tighter">
+            {formattedVolume}
           </div>
         </div>
 
         {/* --- Weekly Goal --- */}
         <div className="mb-8">
-          <div className="flex justify-between items-end mb-2">
-            <span className="text-zinc-100 font-semibold">Weekly Goal</span>
-            <span className="text-zinc-400 text-sm">{weeklyProgress}/4 Workouts</span>
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-white font-bold text-sm">Weekly Goal</span>
+            <div className="bg-blue-600/20 text-blue-400 px-2.5 py-1 rounded-full text-xs font-bold">
+               {weeklyProgress}/4 Workouts
+            </div>
           </div>
-          <div className="h-3 bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-blue-500 rounded-full transition-all duration-500 ease-out"
               style={{ width: `${(weeklyProgress / 4) * 100}%` }}
@@ -115,79 +114,69 @@ const Dashboard: React.FC<Props> = ({ history, onStartWorkout, onViewHistory }) 
           {/* Workout A */}
           <button
             onClick={() => onStartWorkout('A')}
-            className="group relative flex flex-col items-start justify-between p-5 h-40 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-blue-500/50 hover:bg-zinc-800/80 transition-all active:scale-[0.98]"
+            className="group relative flex flex-col items-center justify-center p-6 h-40 rounded-2xl bg-[#1e293b] border border-transparent hover:border-blue-500/50 transition-all active:scale-[0.98]"
           >
-            <div className="p-3 rounded-full bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-              <Dumbbell size={24} />
+             <div className="absolute top-3 right-3 w-1.5 h-1.5 bg-blue-400 rounded-full shadow-[0_0_8px_rgba(96,165,250,0.8)]"></div>
+
+            <div className="mb-4 p-4 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] text-white">
+              <Dumbbell size={28} />
             </div>
-            <div>
-              <div className="text-lg font-bold text-white mb-0.5">Workout A</div>
-              <div className="text-xs text-zinc-500">Strength Focus</div>
-            </div>
+            <div className="text-sm font-bold text-white">Workout A</div>
           </button>
 
           {/* Workout B */}
           <button
             onClick={() => onStartWorkout('B')}
-            className="group relative flex flex-col items-start justify-between p-5 h-40 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-indigo-500/50 hover:bg-zinc-800/80 transition-all active:scale-[0.98]"
+            className="group relative flex flex-col items-center justify-center p-6 h-40 rounded-2xl bg-[#1e293b] border border-transparent hover:border-zinc-600 transition-all active:scale-[0.98]"
           >
-            <div className="p-3 rounded-full bg-indigo-500/10 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
-              <Dumbbell size={24} />
+            <div className="mb-4 p-4 rounded-full bg-[#0f172a] border border-zinc-700 text-zinc-400 group-hover:text-white transition-colors">
+              <Dumbbell size={28} />
             </div>
-            <div>
-              <div className="text-lg font-bold text-white mb-0.5">Workout B</div>
-              <div className="text-xs text-zinc-500">Hypertrophy</div>
-            </div>
+            <div className="text-sm font-bold text-zinc-200 group-hover:text-white">Workout B</div>
           </button>
 
           {/* Finisher */}
           <button
             onClick={() => onStartWorkout('Finisher')}
-            className="group relative flex flex-col items-start justify-between p-5 h-40 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-orange-500/50 hover:bg-zinc-800/80 transition-all active:scale-[0.98]"
+            className="group relative flex flex-col items-center justify-center p-6 h-40 rounded-2xl bg-[#1e293b] border border-transparent hover:border-zinc-600 transition-all active:scale-[0.98]"
           >
-            <div className="p-3 rounded-full bg-orange-500/10 text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-colors">
-              <Flame size={24} />
+            <div className="mb-4 p-4 rounded-full bg-[#0f172a] border border-zinc-700 text-zinc-400 group-hover:text-white transition-colors">
+              <TrendingUp size={28} />
             </div>
-            <div>
-              <div className="text-lg font-bold text-white mb-0.5">Finisher</div>
-              <div className="text-xs text-zinc-500">Burnout</div>
-            </div>
+            <div className="text-sm font-bold text-zinc-200 group-hover:text-white">Finisher</div>
           </button>
 
           {/* Warmup */}
           <button
             onClick={() => onStartWorkout('Warmup')}
-            className="group relative flex flex-col items-start justify-between p-5 h-40 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-emerald-500/50 hover:bg-zinc-800/80 transition-all active:scale-[0.98]"
+            className="group relative flex flex-col items-center justify-center p-6 h-40 rounded-2xl bg-[#1e293b] border border-transparent hover:border-zinc-600 transition-all active:scale-[0.98]"
           >
-            <div className="p-3 rounded-full bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-              <Zap size={24} />
+            <div className="mb-4 p-4 rounded-full bg-[#0f172a] border border-zinc-700 text-zinc-400 group-hover:text-white transition-colors">
+              <Timer size={28} />
             </div>
-            <div>
-              <div className="text-lg font-bold text-white mb-0.5">Warm-Up</div>
-              <div className="text-xs text-zinc-500">Activation</div>
-            </div>
+            <div className="text-sm font-bold text-zinc-200 group-hover:text-white">Warm-Up</div>
           </button>
 
         </div>
       </main>
 
       {/* --- Bottom Navigation --- */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#0b1120]/90 backdrop-blur-lg border-t border-zinc-800 pb-safe pt-2 px-6">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#0f172a]/95 backdrop-blur-lg border-t border-zinc-800/50 pb-safe pt-2 px-6">
         <div className="flex justify-between items-center h-16">
 
-          <button className="flex flex-col items-center gap-1 w-16 group">
-            <Activity size={24} className="text-blue-500" />
-            <span className="text-[10px] font-medium text-blue-500">Stats</span>
+          <button className="flex flex-col items-center gap-1.5 w-16 group opacity-100">
+            <BarChart2 size={20} className="text-zinc-500 group-hover:text-white transition-colors" />
+            <span className="text-[10px] font-medium text-zinc-500 group-hover:text-white transition-colors">Analytics</span>
           </button>
 
-          <button className="flex flex-col items-center gap-1 w-16 group" onClick={() => {}}>
-            <Download size={24} className="text-zinc-600 group-hover:text-zinc-300 transition-colors" />
-            <span className="text-[10px] font-medium text-zinc-600 group-hover:text-zinc-300 transition-colors">Export</span>
+          <button className="flex flex-col items-center gap-1.5 w-16 group" onClick={() => {}}>
+            <Share size={20} className="text-zinc-500 group-hover:text-white transition-colors" />
+            <span className="text-[10px] font-medium text-zinc-500 group-hover:text-white transition-colors">Export</span>
           </button>
 
-          <button className="flex flex-col items-center gap-1 w-16 group" onClick={onViewHistory}>
-            <FileText size={24} className="text-zinc-600 group-hover:text-zinc-300 transition-colors" />
-            <span className="text-[10px] font-medium text-zinc-600 group-hover:text-zinc-300 transition-colors">Logbook</span>
+          <button className="flex flex-col items-center gap-1.5 w-16 group" onClick={onViewHistory}>
+            <Calendar size={20} className="text-zinc-500 group-hover:text-white transition-colors" />
+            <span className="text-[10px] font-medium text-zinc-500 group-hover:text-white transition-colors">Logbook</span>
           </button>
 
         </div>
