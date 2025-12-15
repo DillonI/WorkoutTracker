@@ -367,7 +367,7 @@ const ExerciseLogger: React.FC<Props> = ({
 
       {/* Footer Controls - Fixed to Bottom */}
       {/* Redesigned to have Main Action between Reset and Skip */}
-      <div className="fixed bottom-0 left-0 w-full bg-[#0b1120]/90 backdrop-blur-lg border-t border-white/5 p-4 z-30 pb-safe">
+      <div className="fixed bottom-0 left-0 w-full bg-[#0b1120]/90 backdrop-blur-lg border-t border-white/5 p-4 z-30 pb-[calc(1rem+env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-3 max-w-lg mx-auto">
             
             {/* Undo (Previously Reset) */}

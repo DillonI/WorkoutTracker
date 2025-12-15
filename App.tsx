@@ -200,8 +200,8 @@ const App: React.FC = () => {
              const recommendation = calculateProgression(pushdownExercise.id, history);
              
              return (
-                <div className="flex flex-col h-[100dvh] bg-[#0b1120] text-white">
-                    <div className="flex justify-between items-center p-4 pt-safe shrink-0 z-20 bg-[#0b1120]/80 backdrop-blur-md border-b border-white/5">
+                <div className="flex flex-col flex-1 bg-[#0b1120] text-white">
+                    <div className="flex justify-between items-center p-4 pt-4 shrink-0 z-20 bg-[#0b1120]/80 backdrop-blur-md border-b border-white/5">
                         <button onClick={exitWorkoutToDashboard} className="text-zinc-500 hover:text-white transition-colors">
                             <X size={24} />
                         </button>
@@ -244,7 +244,7 @@ const App: React.FC = () => {
     const actionLabel = isLastExercise ? "Finish Workout" : "Next Exercise";
 
     return (
-      <div className="flex flex-col h-[100dvh] bg-[#0b1120] text-white">
+      <div className="flex flex-col flex-1 bg-[#0b1120] text-white">
         {/* Minimal Header */}
         <div className="hidden"></div> 
 
@@ -276,7 +276,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b1120] text-white selection:bg-blue-600">
+    <div className={`flex flex-col ${view === 'workout' ? 'h-[100dvh] overflow-hidden' : 'min-h-screen'} bg-[#0b1120] text-white selection:bg-blue-600 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]`}>
       {view === 'dashboard' && (
           <Dashboard 
             history={history} 

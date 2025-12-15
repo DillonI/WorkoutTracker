@@ -52,10 +52,10 @@ const FinisherSupersetScreen: React.FC<Props> = ({ exercises, logs, round, histo
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-safe bg-[#0b1120] text-white font-sans selection:bg-blue-600 selection:text-white">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#0b1120] text-white font-sans selection:bg-blue-600 selection:text-white">
       
       {/* Header */}
-      <header className="flex items-center justify-between px-6 pt-8 pb-4 z-10">
+      <header className="flex items-center justify-between px-6 pt-4 pb-4 z-10">
         <button 
             onClick={onExit}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e293b]/50 text-slate-400 hover:text-white transition-colors border border-white/5"
@@ -147,7 +147,7 @@ const FinisherSupersetScreen: React.FC<Props> = ({ exercises, logs, round, histo
       </div>
 
       {/* Footer */}
-      <div className="fixed bottom-0 left-0 w-full bg-[#0b1120]/80 backdrop-blur-xl border-t border-white/5 p-6 pb-8 z-20">
+      <div className="fixed bottom-0 left-0 w-full bg-[#0b1120]/80 backdrop-blur-xl border-t border-white/5 p-6 pb-[calc(2rem+env(safe-area-inset-bottom))] z-20">
           <div className="flex items-center gap-4 max-w-lg mx-auto">
               <div className="flex flex-col gap-1 pr-2">
                  <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Estimated Volume</span>

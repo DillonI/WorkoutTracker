@@ -61,10 +61,10 @@ const Dashboard: React.FC<Props> = ({ history, onStartWorkout, onViewExercise, o
   const dateString = today.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-12 bg-[#0b1120] text-white font-sans">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-32 bg-[#0b1120] text-white font-sans">
       
       {/* Header */}
-      <header className="flex items-center justify-between px-6 pt-safe pb-4 mt-4">
+      <header className="flex items-center justify-between px-6 pt-0 pb-4 mt-4">
         <div className="flex flex-col gap-1">
             <span className="text-sm font-medium text-blue-300 uppercase tracking-wide">{dateString}</span>
             <h1 className="text-2xl font-bold tracking-tight text-white">Good Morning</h1>
@@ -224,7 +224,7 @@ const Dashboard: React.FC<Props> = ({ history, onStartWorkout, onViewExercise, o
       </div>
 
       {/* Footer Nav */}
-      <div className="fixed bottom-0 left-0 w-full backdrop-blur-md bg-[#0b1120]/90 border-t border-white/5 py-4 px-6 z-10">
+      <div className="fixed bottom-0 left-0 w-full backdrop-blur-md bg-[#0b1120]/90 border-t border-white/5 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] px-6 z-10">
         <div className="flex justify-between max-w-sm mx-auto">
             <button onClick={onViewHistory} className="flex flex-col items-center gap-1 group">
                 <BarChart size={20} className="text-slate-500 group-hover:text-blue-500 transition-colors" />
