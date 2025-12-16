@@ -37,6 +37,7 @@ export interface WorkoutSession {
   id: string;
   date: string; // ISO String
   routineId: 'A' | 'B' | 'Finisher' | 'Warmup';
+  timeOfDay: 'Morning' | 'Afternoon' | 'Night';
   logs: ExerciseLog[];
   feedback?: string; // AI Feedback
 }

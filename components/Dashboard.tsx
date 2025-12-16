@@ -60,6 +60,13 @@ const Dashboard: React.FC<Props> = ({ history, onStartWorkout, onViewExercise, o
   const today = new Date();
   const dateString = today.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
 
+  const getGreeting = () => {
+    const hour = today.getHours();
+    if (hour >= 5 && hour < 12) return 'Good Morning';
+    if (hour >= 12 && hour < 17) return 'Good Afternoon';
+    return 'Good Evening';
+  };
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-32 bg-[#0b1120] text-white font-sans">
       
@@ -67,11 +74,11 @@ const Dashboard: React.FC<Props> = ({ history, onStartWorkout, onViewExercise, o
       <header className="flex items-center justify-between px-6 pt-0 pb-4 mt-4">
         <div className="flex flex-col gap-1">
             <span className="text-sm font-medium text-blue-300 uppercase tracking-wide">{dateString}</span>
-            <h1 className="text-2xl font-bold tracking-tight text-white">Good Morning</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-white">{getGreeting()}</h1>
         </div>
-        <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-transparent ring-2 ring-blue-500/20 bg-slate-800 flex items-center justify-center">
-             <span className="text-xl font-bold text-blue-500">{suggestedRoutine}</span>
-        </div>
+        <button className="h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-transparent ring-2 ring-blue-500/20 bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors">
+             <span className="text-xl font-bold text-blue-500">D</span>
+        </button>
       </header>
 
       {/* Insight Card */}
