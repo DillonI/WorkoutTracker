@@ -22,6 +22,7 @@ const App: React.FC = () => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [isWarmupComplete, setIsWarmupComplete] = useState(false);
   const [finisherStep, setFinisherStep] = useState(0); // 0=Round1, 1=Round2, 2=Pushdowns
+  const [workoutStartTimeOfDay, setWorkoutStartTimeOfDay] = useState<'Morning' | 'Afternoon' | 'Night' | null>(null);
 
   // Data State
   const [history, setHistory] = useState<WorkoutSession[]>([]);
@@ -78,6 +79,18 @@ const App: React.FC = () => {
     // Logic: Disabled forced warmup prompt for A/B.
     setIsWarmupComplete(true);
 
+    // Determine Time of Day
+    const currentHour = new Date().getHours();
+    let timeOfDay: 'Morning' | 'Afternoon' | 'Night' = 'Morning';
+    if (currentHour >= 5 && currentHour < 12) {
+        timeOfDay = 'Morning';
+    } else if (currentHour >= 12 && currentHour < 17) {
+        timeOfDay = 'Afternoon';
+    } else {
+        timeOfDay = 'Night';
+    }
+    setWorkoutStartTimeOfDay(timeOfDay);
+
     setView('workout');
   };
 
@@ -128,6 +141,7 @@ const App: React.FC = () => {
       id: crypto.randomUUID(),
       date: new Date().toISOString(),
       routineId: activeRoutine.id,
+      timeOfDay: workoutStartTimeOfDay || 'Morning', // Default fallback
       logs: sessionLogs
     };
 
